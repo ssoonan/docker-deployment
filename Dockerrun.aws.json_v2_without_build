@@ -1,0 +1,49 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "{}.dkr.ecr.ap-northeast-2.amazonaws.com/{}:nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        },
+        {
+          "hostPort": 443,
+          "containerPort": 443
+        }
+      ],
+      "links": ["client", "api"]
+    },
+    {
+      "name": "client",
+      "image": "{}}.dkr.ecr.ap-northeast-2.amazonaws.com/{}}:client",
+      "hostname": "client",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ]
+    },
+    {
+      "name": "api",
+      "image": "{}}.dkr.ecr.ap-northeast-2.amazonaws.com/{}}:api",
+      "hostname": "api",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 8000,
+          "containerPort": 8000
+        }
+      ]
+    }
+  ]
+}
